@@ -85,7 +85,7 @@ def DrawImage(res, num1, val, r, x0, folder_name):
               B.append([aa, bb, cc])
 
 
-      print("Compiling...\n")
+      print("\nCompiling...\n")
 
       Bs = np.array(B).reshape([res, res, 3])  # reshape
 
