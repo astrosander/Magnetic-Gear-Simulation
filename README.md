@@ -7,7 +7,26 @@ The script uses an open-source library <a href="https://github.com/magpylib/magp
 ### Script to illustrate the magnetic induction lines of a "10. Magnetic Gear"problem on the 2024 International Young Physicists' Tournament
 <hr>
 <p align="center">
-  <img src="output/representation.gif" width="800"/>
+  <img src="output/3xN.gif" width="600"/>
   <br><br>
-  Demonstration of the effect
+  Effect of a gear with 4 magnets on a gear with different numbers of magnets
+  <br><br><br>
+</p>
+<p align="center">
+  <img src="output/4x4.gif" width="600"/>
+  <br><br>
+  Effect of a gear with 4 magnets on a gear with 4 magnets
+  <br><br><br>
+</p>
+<p align="center">
+  <img src="output/3x4.gif" width="600"/>
+  <br><br>
+  Effect of a gear with 3 magnets on a gear with 4 magnets
+  <br><br><br>
+</p>
+<p align="center">
+  <img src="output/3x3.gif" width="600"/>
+  <br><br>
+  Effect of a gear with 3 magnets on a gear with 3 magnets
+  <br><br><br>
 </p>
