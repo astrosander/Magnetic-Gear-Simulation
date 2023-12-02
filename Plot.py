@@ -60,8 +60,6 @@ def DrawImage(c, res, i, folder_name):
     # plt.show()
     plt.savefig(f"{folder_name}\\{i}.png", dpi=300)
 
-def SystemCalc()
-
 def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
     phi = pi / (129) * j * m2 / m1
 
