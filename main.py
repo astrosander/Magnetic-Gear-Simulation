@@ -1,14 +1,19 @@
 import Plot, Video
 import os
 
-#Variables
-res = 20    #image resolution
-num1 = 20   #number of frames
-val = 4000  #electromagnetic induction 
+
+#Magnets
+NumLeft = 4
+NumRight = 4
+val = 4000 #electromagnetic induction 
 r = 5       #disk radius
 x0 = 20     #coordinate of the 2nd disk
-fps = 10    #fps
 
+
+#Video
+res = 300   #image resolution
+num1 = 5    #number of frames
+fps = 10    #fps
 folder_name = "output"
 video_name = "result.mp4"
 
@@ -16,9 +21,12 @@ FilePath = f"{folder_name}\\{video_name}"
 
 
 if __name__ == "__main__":
-  Plot.DrawImage(res, num1, val, r, x0, folder_name)
-
-  print("Adding to video..")
+  if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
+    
+  for j in range(0, num1):
+    Plot.DrawImageNxM(res, j, val, r, x0, folder_name, NumLeft, NumRight)
+  
   Video.images_to_video(folder_name, FilePath, fps, num1)
 
   if os.path.exists(FilePath):

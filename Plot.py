@@ -3,105 +3,101 @@ import matplotlib.pyplot as plt
 from magpylib.source.magnet import Cylinder
 import magpylib as magpy
 import math
-import os
 
 pi = math.pi
 
-def DrawImage(res, num1, val, r, x0, folder_name):
-    if not os.path.exists(folder_name):
-        os.makedirs(folder_name)
+def ConstrastVal(a):
+  return math.sqrt(abs(a))
 
-    for i in range(0, num1):
-      phi = pi / (128) * i
+def DrawImage(c, res, i, folder_name):
+    zs = np.linspace(-13, 13, res)
+    xs = np.linspace(-11.5, 31.5, res)
 
-      s1 = Cylinder(mag=[0, 0, val], dim=[2.5, 2])
-      s3 = Cylinder(mag=[0, 0, val], dim=[2.5, 2])
-      s2 = Cylinder(mag=[0, 0, val], dim=[2.5, 2])
-      s4 = Cylinder(mag=[0, 0, val], dim=[2.5, 2])
+    fig = plt.figure(figsize=(10, 6))
 
-      s1.move((r * math.cos(pi / 2 + phi), 0, r * math.sin(pi / 2 + phi)))
-      s2.move((r * math.cos(2 * pi / 2 + phi), 0, r * math.sin(2 * pi / 2 + phi)))
-      s3.move((r * math.cos(3 * pi / 2 + phi), 0, r * math.sin(3 * pi / 2 + phi)))
-      s4.move((r * math.cos(phi), 0, r * math.sin(phi)))
+    ax2 = fig.add_subplot(111)
+    B, B1 = [],[]
+    num = 0
 
-      s1.rotate(2 * 90 - phi / pi * 180, [0, 1, 0])
-      s2.rotate(1 * 90 - phi / pi * 180, [0, 1, 0])
-      s3.rotate(0 * 90 - phi / pi * 180, [0, 1, 0])
-      s4.rotate(3 * 90 - phi / pi * 180, [0, 1, 0])
+    for z in zs:
+        num += 1
+        print(f"{i}.png   {round(100*num/res, 1)}%")
 
+        for x in xs:
+            magnetic_field1 = c.getB([x, 0, z])
 
-      phi1 = -pi / (128) * i
+            aa = magnetic_field1[0]
+            bb = magnetic_field1[1]
+            cc = magnetic_field1[2]
 
-      s5 = Cylinder(mag=[0, 0, -val], dim=[2.5, 2])
-      s6 = Cylinder(mag=[0, 0, -val], dim=[2.5, 2])
-      s7 = Cylinder(mag=[0, 0, -val], dim=[2.5, 2])
-      s8 = Cylinder(mag=[0, 0, -val], dim=[2.5, 2])
+            B1.append([aa, bb, cc])
 
-      s5.move((r * math.cos(pi / 2 + phi1) + x0, 0, r * math.sin(pi / 2 + phi1)))
-      s6.move((r * math.cos(2 * pi / 2 + phi1) + x0, 0, r * math.sin(2 * pi / 2 + phi1)))
-      s7.move((r * math.cos(3 * pi / 2 + phi1) + x0, 0, r * math.sin(3 * pi / 2 + phi1)))
-      s8.move((r * math.cos(phi1) + x0, 0, r * math.sin(phi1)))
+            aa = ConstrastVal(aa)
+            bb = ConstrastVal(bb)
+            cc = ConstrastVal(cc)
 
-      s5.rotate(2 * 90 - phi1 / pi * 180, [0, 1, 0])
-      s6.rotate(1 * 90 - phi1 / pi * 180, [0, 1, 0])
-      s7.rotate(0 * 90 - phi1 / pi * 180, [0, 1, 0])
-      s8.rotate(3 * 90 - phi1 / pi * 180, [0, 1, 0])
+            # magnetic_field = math.sqrt(aa * aa + bb*bb + cc*cc)
 
-      c = magpy.Collection(s1, s2, s3, s4, s5, s6, s7, s8)
+            B.append([aa, bb, cc])
 
-      zs = np.linspace(-12, 12, res)
-      xs = np.linspace(-10, 30, res)
+    print("\nCompiling...\n")
 
-      fig = plt.figure(figsize=(10, 6))
+    Bs = np.array(B).reshape([res, res, 3])  # reshape
 
-      ax2 = fig.add_subplot(111)
-      B = []
-      B1 = []
-      num = 0
+    Bamp = np.linalg.norm(Bs, axis=2)
 
-      for z in zs:
-          num = num + 1
-          print(f"{i}.png   {round(100*num/res, 1)}%")
+    # magpy.displaySystem(c,subplotAx=ax1,suppress=True)
+    # ax1.view_init(elev=75)
 
-          for x in xs:
-              magnetic_field1 = c.getB([x, 0, z])
+    X, Z = np.meshgrid(xs, zs)
+    ax2.pcolor(xs, zs, Bamp, cmap="turbo", vmax=50)
 
-              aa = magnetic_field1[0]
-              bb = magnetic_field1[1]
-              cc = magnetic_field1[2]
+    Bs = np.array(B1).reshape([res, res, 3])  # reshape
 
-              B1.append([aa, bb, cc])
+    X, Z = np.meshgrid(xs, zs)
+    U, V = Bs[:, :, 0], Bs[:, :, 2]
+    ax2.streamplot(X, Z, U, V, color="k", density=5, linewidth=0.6, arrowsize=0.6)
+    # plt.show()
+    plt.savefig(f"{folder_name}\\{i}.png", dpi=300)
 
-              aa = abs(aa)
-              bb = abs(bb)
-              cc = abs(cc)
+def SystemCalc()
 
-              aa = math.sqrt(aa)  #make colors more contrast
-              bb = math.sqrt(bb)
-              cc = math.sqrt(cc)
+def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
+    phi = pi / (129) * j * m2 / m1
 
-              # magnetic_field = math.sqrt(aa * aa + bb*bb + cc*cc)
+    for i in range(0, m1):
+        s1.append(Cylinder(mag=[0, 0, val], dim=[2.5, 2]))
+    for i in range(0, m1):
+        s1[i].move(
+            (
+                r * math.cos(pi / 2 + phi + 2 * pi * i / m1),
+                0,
+                r * math.sin(pi / 2 + phi + 2 * pi * i / m1),
+            )
+        )
 
-              B.append([aa, bb, cc])
+    for i in range(0, m1):
+        s1[i].rotate(-i * 360 / m1 - phi / pi * 180, [0, 1, 0])
 
 
-      print("\nCompiling...\n")
+    phi1 = -pi / (129) * j * m1 / m2
 
-      Bs = np.array(B).reshape([res, res, 3])  # reshape
+    s2 = []
+    for i in range(0, m2):
+        s2.append(Cylinder(mag=[0, 0, -val], dim=[2.5, 2]))
 
-      Bamp = np.linalg.norm(Bs, axis=2)
+    for i in range(0, m2):
+        s2[i].move(
+            (
+                r * math.cos(pi / 2 + phi1 + 2 * pi * i / m2) + x0,
+                0,
+                r * math.sin(pi / 2 + phi1 + 2 * pi * i / m2),
+            )
+        )
 
-      # magpy.displaySystem(c,subplotAx=ax1,suppress=True)
-      # ax1.view_init(elev=75)
+    for i in range(0, m2):
+        s2[i].rotate(-i * 360 / m2 - phi1 / pi * 180, [0, 1, 0])
 
-      X, Z = np.meshgrid(xs, zs)
-      ax2.pcolor(xs, zs, Bamp, cmap="turbo", vmax=50)
+    c = magpy.Collection(s1, s2)
 
-      Bs = np.array(B1).reshape([res, res, 3])  # reshape
-
-      X, Z = np.meshgrid(xs, zs)
-      U, V = Bs[:, :, 0], Bs[:, :, 2]
-      ax2.streamplot(X, Z, U, V, color="k", density=5, linewidth=0.6, arrowsize=0.6)
-
-      # plt.show()
-      plt.savefig(f"{folder_name}\\{i}.png", dpi=300)
+    DrawImage(c, res, j, folder_name)
