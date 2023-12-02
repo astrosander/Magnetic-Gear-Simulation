@@ -63,6 +63,8 @@ def DrawImage(c, res, i, folder_name):
 def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
     phi = pi / (128) * j * m2 / m1
 
+    s1 = []
+    
     for i in range(0, m1):
         s1.append(Cylinder(mag=[0, 0, val], dim=[2.5, 2]))
     for i in range(0, m1):

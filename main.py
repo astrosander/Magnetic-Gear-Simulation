@@ -12,9 +12,9 @@ x0 = 20     #coordinate of the 2nd disk
 
 #Video
 res = 100    #image resolution
-num1 = 64    #number of frames
+num1 = 2    #number of frames
 fps = 10     #fps
-folder_name = "output1"
+folder_name = "output"
 video_name = "result.mp4"
 
 FilePath = f"{folder_name}\\{video_name}"
