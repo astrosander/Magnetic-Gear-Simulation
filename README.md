@@ -13,6 +13,12 @@ The script uses an open-source library <a href="https://github.com/magpylib/magp
   <br><br><br>
 </p>
 <p align="center">
+  <img src="output/representation.png" width="600"/>
+  <br><br>
+  Mutual arrangement of magnets in 3d
+  <br><br><br>
+</p>
+<p align="center">
   <img src="output/4x4.gif" width="600"/>
   <br><br>
   Effect of a gear with 4 magnets on a gear with 4 magnets
