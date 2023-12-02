@@ -5,20 +5,19 @@ import os
 #Magnets
 NumLeft = 4
 NumRight = 4
-val = 4000 #electromagnetic induction 
+val = 4000  #electromagnetic induction 
 r = 5       #disk radius
 x0 = 20     #coordinate of the 2nd disk
 
 
 #Video
-res = 300   #image resolution
-num1 = 5    #number of frames
-fps = 10    #fps
-folder_name = "output"
+res = 100    #image resolution
+num1 = 64    #number of frames
+fps = 10     #fps
+folder_name = "output1"
 video_name = "result.mp4"
 
 FilePath = f"{folder_name}\\{video_name}"
-
 
 if __name__ == "__main__":
   if not os.path.exists(folder_name):

@@ -61,7 +61,7 @@ def DrawImage(c, res, i, folder_name):
     plt.savefig(f"{folder_name}\\{i}.png", dpi=300)
 
 def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
-    phi = pi / (129) * j * m2 / m1
+    phi = pi / (128) * j * m2 / m1
 
     for i in range(0, m1):
         s1.append(Cylinder(mag=[0, 0, val], dim=[2.5, 2]))
@@ -78,7 +78,7 @@ def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
         s1[i].rotate(-i * 360 / m1 - phi / pi * 180, [0, 1, 0])
 
 
-    phi1 = -pi / (129) * j * m1 / m2
+    phi1 = -pi / (128) * j * m1 / m2
 
     s2 = []
     for i in range(0, m2):
