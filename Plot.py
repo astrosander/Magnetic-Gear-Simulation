@@ -60,7 +60,7 @@ def DrawImage(c, res, i, folder_name):
     # plt.show()
     plt.savefig(f"{folder_name}\\{i}.png", dpi=300)
 
-def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
+def DrawImageNxM(j, val, r, x0, m1, m2):
     phi = pi / (128) * j * m2 / m1
 
     s1 = []
@@ -98,6 +98,5 @@ def DrawImageNxM(res, j, val, r, x0, folder_name, m1, m2):
     for i in range(0, m2):
         s2[i].rotate(-i * 360 / m2 - phi1 / pi * 180, [0, 1, 0])
 
-    c = magpy.Collection(s1, s2)
-
-    DrawImage(c, res, j, folder_name)
+    return magpy.Collection(s1, s2)
+    

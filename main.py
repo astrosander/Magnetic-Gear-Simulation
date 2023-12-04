@@ -24,7 +24,8 @@ if __name__ == "__main__":
     os.makedirs(folder_name)
     
   for j in range(0, num1):
-    Plot.DrawImageNxM(res, j, val, r, x0, folder_name, NumLeft, NumRight)
+    c=Plot.DrawImageNxM(j, val, r, x0, NumLeft, NumRight)
+    Plot.DrawImage(c, res, j, folder_name)
   
   Video.images_to_video(folder_name, FilePath, fps, num1)
 
