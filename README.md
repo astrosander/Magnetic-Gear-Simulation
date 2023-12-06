@@ -4,7 +4,7 @@
 The script uses an open-source library <a href="https://github.com/magpylib/magpylib/tree/main">Magpylib</a>
 <hr>
 
-### Script to illustrate the magnetic induction lines of a "10. Magnetic Gear"problem on the 2024 International Young Physicists' Tournament
+### Script to illustrate the magnetic induction lines of a "10. Magnetic Gear" problem on the 2024 International Young Physics Tournament
 <hr>
 <p align="center">
   <img src="output/3xN.gif" width="600"/>
