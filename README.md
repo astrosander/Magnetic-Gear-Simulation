@@ -1,4 +1,4 @@
-# Magnetic-Gear-simulation🐻
+# Magnetic-Gear-simulation🧲
 <p align="left" href="https://github.com/magpylib/magpylib/tree/main">
   <a href="https://github.com/magpylib/magpylib/tree/main">
     <img align="center" src=https://raw.githubusercontent.com/magpylib/magpylib/main/docs/_static/images/magpylib_flag.png width=35%>  
