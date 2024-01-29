@@ -12,3 +12,7 @@ def images_to_video(image_folder, video_name, fps, frame_number):
     for image in images:
         video.write(cv2.imread(os.path.join(image_folder, image)))
 
+    if os.path.exists(video_name):
+        print(f'Rendered Video is lockated in "{video_name}"')
+    else:
+        print(f"An error occurred")
